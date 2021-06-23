@@ -17,3 +17,7 @@ def author_perfil(request, username):
     posts = Post.objects.filter(author=author)
 
     return render(request, 'blog/author_perfil.html', {'author':author, 'posts': posts})
+
+def post_draft_list(request):
+    posts = Post.objects.filter(published_date__isnull=True).order_by('created_date')
+    return render(request, 'blog/post_draft_list.html', {'posts': posts})
