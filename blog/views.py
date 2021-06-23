@@ -17,6 +17,7 @@ def author_perfil(request, username):
     posts = Post.objects.filter(author=author)
 
     return render(request, 'blog/author_perfil.html', {'author':author, 'posts': posts})
+<<<<<<< HEAD
 
 def post_draft_list(request):
     posts = Post.objects.filter(published_date__isnull=True).order_by('created_date')
@@ -27,3 +28,5 @@ def post_draft_list(request):
 =======
     return render (request, 'blog/post_list.html', {'posts' : posts})
 >>>>>>> parent of b750a96 (Update URLs)
+=======
+>>>>>>> parent of 390d1b9 (Rascunhos Blog)
