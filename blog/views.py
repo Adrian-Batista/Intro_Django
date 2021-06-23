@@ -4,6 +4,7 @@ from .models import Post
 def post_list(request):
     posts = Post.objects.all()
 <<<<<<< HEAD
+<<<<<<< HEAD
     users = User.objects.all()
     return render (request, 'blog/post_list.html', {'posts' : posts, 'users': users})
 
@@ -20,6 +21,9 @@ def author_perfil(request, username):
 def post_draft_list(request):
     posts = Post.objects.filter(published_date__isnull=True).order_by('created_date')
     return render(request, 'blog/post_draft_list.html', {'posts': posts})
+=======
+    return render (request, 'blog/post_list.html', {'posts' : posts})
+>>>>>>> parent of b750a96 (Update URLs)
 =======
     return render (request, 'blog/post_list.html', {'posts' : posts})
 >>>>>>> parent of b750a96 (Update URLs)
