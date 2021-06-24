@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
+from django.contrib.auth import logout
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now())
@@ -28,6 +29,11 @@ def author_perfil(request, username):
 def post_draft_list(request):
     posts = Post.objects.filter(published_date__isnull=True).order_by('created_date')
     return render(request, 'blog/post_draft_list.html', {'posts': posts})
+
+
+def logout_view(request):
+    logout(request)
+    # Redirect to a success page.
 
 
 @login_required
