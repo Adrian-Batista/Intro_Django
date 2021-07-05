@@ -2,8 +2,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login as django_login, logout as django_logout, authenticate
 
 from .models import Post, Comment
+from django.contrib import messages
 from .forms import PostForm, CommentForm
 from django.contrib.auth import logout
 
@@ -30,6 +32,21 @@ def post_draft_list(request):
     posts = Post.objects.filter(published_date__isnull=True).order_by('created_date')
     return render(request, 'blog/post_draft_list.html', {'posts': posts})
 
+
+def login(request):
+  if request.method == 'POST':
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+
+    if user is not None:
+      django_login(request, user)
+
+      return redirect('post_list')
+    else:
+      messages.error(request, 'E-mail or password incorrect')
+
+  return render(request, 'blog/registration/login.html')
 
 def logout_view(request):
     logout(request)

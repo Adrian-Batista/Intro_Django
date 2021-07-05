@@ -13,4 +13,7 @@ urlpatterns = [
     path('author/<username>/', views.author_perfil, name='author_perfil'),
     path('comment/<int:pk>/approve/', views.comment_approve, name='comment_approve'),
     path('comment/<int:pk>/remove/', views.comment_remove, name='comment_remove'),
+
+    path('login', views.login, name='login'),
+    path('logout', views.logout, name='logout'),
 ]
